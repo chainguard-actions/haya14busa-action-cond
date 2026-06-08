@@ -1,4 +1,4 @@
-name: Test cond=false returns if_false value
+name: Test cond false
 on:
   workflow_dispatch:
 jobs:
@@ -10,15 +10,15 @@ jobs:
         uses: .
         with:
           cond: 'false'
-          if_true: 'hello'
-          if_false: 'world'
+          if_true: 'yes'
+          if_false: 'no'
       - name: Assert output equals if_false
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
           echo "actual: $ACTUAL"
-          if [ "$ACTUAL" != "world" ]; then
-            echo "FAIL: expected 'world' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "no" ]; then
+            echo "FAIL: expected 'no' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
