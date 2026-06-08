@@ -1,7 +1,7 @@
 {
   "ran": true,
   "passed": true,
-  "output": "\n\u003e action-cond@0.0.0 test\n\u003e jest\n\n  console.log\n    \n    ::set-output name=value::value-if-true\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:14:11)\n\n  console.log\n    \n    ::set-output name=value::value-if-false\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:25:11)\n\n  console.log\n    \n    ::set-output name=value::\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:36:11)\n\nPASS __tests__/main.test.ts\n  ✓ test runs (true) (156 ms)\n  ✓ test runs (false) (73 ms)\n  ✓ test runs (empty) (68 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       3 passed, 3 total\nSnapshots:   0 total\nTime:        1.816 s\nRan all test suites.\n",
-  "duration_ms": 2484,
+  "output": "\n\u003e action-cond@0.0.0 test\n\u003e jest\n\n  console.log\n    \n    ::set-output name=value::value-if-true\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:14:11)\n\n  console.log\n    \n    ::set-output name=value::value-if-false\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:25:11)\n\n  console.log\n    \n    ::set-output name=value::\n\n      at Object.\u003canonymous\u003e (__tests__/main.test.ts:36:11)\n\nPASS __tests__/main.test.ts\n  ✓ test runs (true) (85 ms)\n  ✓ test runs (false) (70 ms)\n  ✓ test runs (empty) (70 ms)\n\nTest Suites: 1 passed, 1 total\nTests:       3 passed, 3 total\nSnapshots:   0 total\nTime:        1.935 s\nRan all test suites.\n",
+  "duration_ms": 2761,
   "exit_code": 0
 }

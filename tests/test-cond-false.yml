@@ -10,15 +10,15 @@ jobs:
         uses: .
         with:
           cond: 'false'
-          if_true: 'hello-true'
-          if_false: 'hello-false'
-      - name: Assert output equals if_false value
+          if_true: 'yes-value'
+          if_false: 'no-value'
+      - name: Assert output equals if_false
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
           echo "actual: $ACTUAL"
-          if [ "$ACTUAL" != "hello-false" ]; then
-            echo "FAIL: expected 'hello-false' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "no-value" ]; then
+            echo "FAIL: expected 'no-value' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
