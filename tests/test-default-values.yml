@@ -1,4 +1,4 @@
-name: Test cond=true returns if_true value
+name: Test default empty values when if_true and if_false are omitted
 on:
   workflow_dispatch:
 jobs:
@@ -10,15 +10,13 @@ jobs:
         uses: .
         with:
           cond: 'true'
-          if_true: 'yes-value'
-          if_false: 'no-value'
-      - name: Assert output equals if_true value
+      - name: Assert output is empty string when if_true defaults to empty
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
-          echo "actual: $ACTUAL"
-          if [ "$ACTUAL" != "yes-value" ]; then
-            echo "FAIL: expected 'yes-value' but got '$ACTUAL'"
+          echo "actual: '$ACTUAL'"
+          if [ "$ACTUAL" != "" ]; then
+            echo "FAIL: expected empty string but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
