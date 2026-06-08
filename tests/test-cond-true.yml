@@ -1,0 +1,24 @@
+name: Test cond=true returns if_true value
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          cond: 'true'
+          if_true: 'hello-true'
+          if_false: 'hello-false'
+      - name: Assert output equals if_true value
+        env:
+          ACTUAL: ${{ steps.action.outputs.value }}
+        run: |
+          echo "actual: $ACTUAL"
+          if [ "$ACTUAL" != "hello-true" ]; then
+            echo "FAIL: expected 'hello-true' but got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS"
