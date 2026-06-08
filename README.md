@@ -10,6 +10,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 |---------|-----|-----------------|
 | v1.1.0 | [`v1.1.0`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.1.0) | [`c69871f`](https://github.com/haya14busa/action-cond/commit/c69871f4d4693e93126e770d7c3588cb1d473462) |
 | v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.1.1) | [`1d6e8a1`](https://github.com/haya14busa/action-cond/commit/1d6e8a12b20cdb4f1954feef9aa475b9c390cab5) |
+| v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.2.0) | [`e191ace`](https://github.com/haya14busa/action-cond/commit/e191acef2f01deb524fc24ec0f770a75e490c435) |
 | v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.2.1) | [`94f77f7`](https://github.com/haya14busa/action-cond/commit/94f77f7a80cd666cb3155084e428254fea4281fd) |
 
 ## Privacy
