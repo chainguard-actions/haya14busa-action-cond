@@ -1,17 +1,59 @@
-# haya14busa/action-cond
+# Conditional value - missing expression for GitHub Actions
 
-Conditional value - missing expression for GitHub Actions
+[![test](https://github.com/haya14busa/action-cond/workflows/test/badge.svg)](https://github.com/haya14busa/action-cond/actions?query=workflow%3Atest)
+[![reviewdog](https://github.com/haya14busa/action-cond/workflows/reviewdog/badge.svg)](https://github.com/haya14busa/action-cond/actions?query=workflow%3Areviewdog)
+[![release](https://github.com/haya14busa/action-cond/workflows/release/badge.svg)](https://github.com/haya14busa/action-cond/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/haya14busa/action-cond?logo=github&sort=semver)](https://github.com/haya14busa/action-cond/releases)
 
-Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/haya14busa/action-cond](https://github.com/haya14busa/action-cond).
+```yaml
+inputs:
+  cond:
+    description: 'condition. [true,false]'
+    required: true
+  if_true:
+    description: 'output value if cond is true'
+  if_false:
+    description: 'output value if cond is false'
+outputs:
+  value:
+    description: 'output value'
+```
 
-## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.1.0 | [`v1.1.0`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.1.0) | [`c69871f`](https://github.com/haya14busa/action-cond/commit/c69871f4d4693e93126e770d7c3588cb1d473462) |
-| v1.1.1 | [`v1.1.1`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.1.1) | [`1d6e8a1`](https://github.com/haya14busa/action-cond/commit/1d6e8a12b20cdb4f1954feef9aa475b9c390cab5) |
-| v1.2.0 | [`v1.2.0`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.2.0) | [`e191ace`](https://github.com/haya14busa/action-cond/commit/e191acef2f01deb524fc24ec0f770a75e490c435) |
-| v1.2.1 | [`v1.2.1`](https://github.com/chainguard-actions/haya14busa-action-cond/tree/v1.2.1) | [`94f77f7`](https://github.com/haya14busa/action-cond/commit/94f77f7a80cd666cb3155084e428254fea4281fd) |
+## Usage:
+
+```yaml
+steps:
+- uses: haya14busa/action-cond@v1
+  id: condval
+  with:
+    cond: ${{ github.event_name == 'pull_request' }}
+    if_true: "value for pull request event"
+    if_false: "value for non pull request event"
+- name: Use conditional value
+  run: echo "${{ steps.condval.outputs.value }}"
+```
+
+### Change reviewdog reporter depending on event:
+
+https://github.com/reviewdog/reviewdog
+https://github.com/reviewdog/action-eslint
+
+```yaml
+steps:
+- uses: actions/checkout@v1
+- uses: haya14busa/action-cond@v1
+  id: reporter
+  with:
+    cond: ${{ github.event_name == 'pull_request' }}
+    if_true: "github-pr-review"
+    if_false: "github-check"
+- uses: reviewdog/action-eslint@v1
+  with:
+    github_token: ${{ secrets.github_token }}
+    eslint_flags: 'src/**/*.ts'
+    reporter: ${{ steps.reporter.outputs.value }}
+```
 
 ## Privacy
 
