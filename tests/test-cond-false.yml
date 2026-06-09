@@ -12,7 +12,7 @@ jobs:
           cond: 'false'
           if_true: 'hello'
           if_false: 'world'
-      - name: Assert output equals if_false
+      - name: Assert output equals if_false value
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
