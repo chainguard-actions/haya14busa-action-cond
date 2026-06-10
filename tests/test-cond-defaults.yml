@@ -6,13 +6,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - id: action
+      - id: action-true
         uses: .
         with:
           cond: 'true'
-      - name: Assert output is empty string when if_true defaults to empty
+      - name: Assert output is empty when cond=true and if_true not set
         env:
-          ACTUAL: ${{ steps.action.outputs.value }}
+          ACTUAL: ${{ steps.action-true.outputs.value }}
+        run: |
+          echo "actual: '$ACTUAL'"
+          if [ "$ACTUAL" != "" ]; then
+            echo "FAIL: expected empty string but got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS"
+      - id: action-false
+        uses: .
+        with:
+          cond: 'false'
+      - name: Assert output is empty when cond=false and if_false not set
+        env:
+          ACTUAL: ${{ steps.action-false.outputs.value }}
         run: |
           echo "actual: '$ACTUAL'"
           if [ "$ACTUAL" != "" ]; then
