@@ -1,7 +1,5 @@
 {
   "ran": true,
   "passed": true,
-  "output": "\n\u003e action-cond@0.0.0 test\n\u003e jest\n\nPASS __tests__/main.test.ts\n  ✓ test runs (true) (52ms)\n  ✓ test runs (false) (44ms)\n  ✓ test runs (empty) (42ms)\n\n  console.log __tests__/main.test.ts:14\n    ::set-output name=value::value-if-true\n    \n\n  console.log __tests__/main.test.ts:25\n    ::set-output name=value::value-if-false\n    \n\n  console.log __tests__/main.test.ts:36\n    ::set-output name=value::\n    \n\nTest Suites: 1 passed, 1 total\nTests:       3 passed, 3 total\nSnapshots:   0 total\nTime:        1.317s\nRan all test suites.\n",
-  "duration_ms": 2126,
   "exit_code": 0
 }
