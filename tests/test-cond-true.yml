@@ -1,4 +1,4 @@
-name: Test cond true
+name: Test cond=true returns if_true value
 on:
   workflow_dispatch:
 jobs:
@@ -10,15 +10,15 @@ jobs:
         uses: .
         with:
           cond: 'true'
-          if_true: 'yes'
-          if_false: 'no'
+          if_true: 'hello'
+          if_false: 'world'
       - name: Assert output equals if_true
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
           echo "actual: $ACTUAL"
-          if [ "$ACTUAL" != "yes" ]; then
-            echo "FAIL: expected 'yes' but got '$ACTUAL'"
+          if [ "$ACTUAL" != "hello" ]; then
+            echo "FAIL: expected 'hello' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
