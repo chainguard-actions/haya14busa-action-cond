@@ -1,7 +1,5 @@
 {
   "ran": true,
   "passed": true,
-  "output": "\n\u003e action-cond@0.0.0 test\n\u003e jest\n\nts-jest[versions] (WARN) Version 4.5.4 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (\u003e=2.7.0 \u003c4.0.0). Please do not report issues in ts-jest if you are using unsupported versions.\nPASS __tests__/main.test.ts\n  ✓ test runs (true) (74ms)\n  ✓ test runs (false) (66ms)\n  ✓ test runs (empty) (75ms)\n\n  console.log __tests__/main.test.ts:14\n    ::set-output name=value::value-if-true\n    \n\n  console.log __tests__/main.test.ts:25\n    ::set-output name=value::value-if-false\n    \n\n  console.log __tests__/main.test.ts:36\n    ::set-output name=value::\n    \n\nTest Suites: 1 passed, 1 total\nTests:       3 passed, 3 total\nSnapshots:   0 total\nTime:        1.991s\nRan all test suites.\n",
-  "duration_ms": 3044,
   "exit_code": 0
 }
