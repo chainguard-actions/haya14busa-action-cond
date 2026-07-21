@@ -1,0 +1,23 @@
+name: Test empty defaults when cond=false and if_false not provided
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          cond: 'false'
+          if_true: 'some-value'
+      - name: Assert output is empty when if_false defaults to empty
+        env:
+          ACTUAL: ${{ steps.action.outputs.value }}
+        run: |
+          echo "actual: '$ACTUAL'"
+          if [ -n "$ACTUAL" ]; then
+            echo "FAIL: expected empty string but got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS"
