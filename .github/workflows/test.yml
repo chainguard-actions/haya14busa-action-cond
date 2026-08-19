@@ -1,0 +1,68 @@
+name: "test"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+    - run: |
+        npm install
+        npm run all
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
+
+    - name: set testval
+      id: testval
+      uses: ./
+      with:
+        cond: true
+        if_true: "true value"
+        if_false: "false value"
+    - name: check testval
+      env:
+        TESTVAL: ${{ steps.testval.outputs.value }}
+      run: test "$TESTVAL" = "true value"
+
+    - name: set falseval
+      id: falseval
+      uses: ./
+      with:
+        cond: false
+        if_true: "true value"
+        if_false: "false value"
+    - name: check falseval
+      env:
+        FALSEVAL: ${{ steps.falseval.outputs.value }}
+      run: test "$FALSEVAL" = "false value"
+
+    - name: Test with GitHub Actions expression
+      id: event
+      uses: ./
+      with:
+        cond: ${{ github.event_name == 'pull_request' }}
+        if_true: "value for pull request event"
+        if_false: "value for non pull request event"
+    - name: check event
+      env:
+        EVENT_VALUE: ${{ steps.event.outputs.value }}
+      run: echo "$EVENT_VALUE"
+    - name: check event (PR)
+      if: github.event_name == 'pull_request'
+      env:
+        EVENT_VALUE: ${{ steps.event.outputs.value }}
+      run: test "$EVENT_VALUE" = "value for pull request event"
+    - name: check event (non-PR)
+      if: github.event_name != 'pull_request'
+      env:
+        EVENT_VALUE: ${{ steps.event.outputs.value }}
+      run: test "$EVENT_VALUE" = "value for non pull request event"

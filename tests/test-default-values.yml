@@ -1,4 +1,4 @@
-name: Test default empty values when if_true and if_false are omitted
+name: Test default empty values
 on:
   workflow_dispatch:
 jobs:
@@ -6,27 +6,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - id: action-true
+      - id: action-true-default
         uses: .
         with:
           cond: 'true'
-      - name: Assert output is empty when cond=true and if_true is default
+          if_true: 'selected'
+      - name: Assert if_true selected when cond is true and if_false is default
         env:
-          ACTUAL: ${{ steps.action-true.outputs.value }}
+          ACTUAL: ${{ steps.action-true-default.outputs.value }}
         run: |
-          echo "actual: '$ACTUAL'"
-          if [ "$ACTUAL" != "" ]; then
-            echo "FAIL: expected empty string but got '$ACTUAL'"
+          echo "actual: $ACTUAL"
+          if [ "$ACTUAL" != "selected" ]; then
+            echo "FAIL: expected 'selected' but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"
-      - id: action-false
+      - id: action-false-default
         uses: .
         with:
           cond: 'false'
-      - name: Assert output is empty when cond=false and if_false is default
+          if_true: 'selected'
+      - name: Assert output is empty when cond is false and if_false is default
         env:
-          ACTUAL: ${{ steps.action-false.outputs.value }}
+          ACTUAL: ${{ steps.action-false-default.outputs.value }}
         run: |
           echo "actual: '$ACTUAL'"
           if [ "$ACTUAL" != "" ]; then
