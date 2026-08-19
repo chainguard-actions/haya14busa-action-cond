@@ -1,4 +1,4 @@
-name: Test condition false
+name: Test cond=false with no if_false returns empty string
 on:
   workflow_dispatch:
 jobs:
@@ -10,15 +10,14 @@ jobs:
         uses: .
         with:
           cond: 'false'
-          if_true: 'hello'
-          if_false: 'world'
-      - name: Assert output equals if_false value
+          if_true: 'some-value'
+      - name: Assert output is empty string
         env:
           ACTUAL: ${{ steps.action.outputs.value }}
         run: |
-          echo "actual: $ACTUAL"
-          if [ "$ACTUAL" != "world" ]; then
-            echo "FAIL: expected 'world' but got '$ACTUAL'"
+          echo "actual: '$ACTUAL'"
+          if [ -n "$ACTUAL" ]; then
+            echo "FAIL: expected empty string but got '$ACTUAL'"
             exit 1
           fi
           echo "PASS"

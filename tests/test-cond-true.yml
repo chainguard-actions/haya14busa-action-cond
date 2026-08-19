@@ -1,4 +1,4 @@
-name: Test cond=true returns if_true value
+name: Test condition true
 on:
   workflow_dispatch:
 jobs:
